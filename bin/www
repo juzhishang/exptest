@@ -5,6 +5,8 @@
  */
 
 var app = require('../app');
+// debug跟console类似，但是在生产环境不会console信息
+// 通过DEBUG=exptest npm start启动
 var debug = require('debug')('exptest:server');
 var http = require('http');
 
@@ -12,20 +14,25 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
+// 将port转为10进制数字，如果转化后不是数字，返回原值，如果是数字，返回数字，否则返回false
+// 默认端口为'3000'
 var port = normalizePort(process.env.PORT || '3000');
+// 设置端口号
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
+// 创建http服务
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
+// 监听端口
 server.listen(port);
+// 监听error事件与listening事件
 server.on('error', onError);
 server.on('listening', onListening);
 
