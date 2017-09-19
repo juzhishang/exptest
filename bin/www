@@ -6,7 +6,7 @@
 
 var app = require('../app');
 // debug跟console类似，但是在生产环境不会console信息
-// 通过DEBUG=exptest npm start启动
+// 通过DEBUG=exptest:server npm start启动时显示debug信息
 var debug = require('debug')('exptest:server');
 var http = require('http');
 
@@ -61,6 +61,7 @@ function normalizePort(val) {
  */
 
 function onError(error) {
+  // 如果是监听错误，直接抛出错误
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -70,6 +71,7 @@ function onError(error) {
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
+  // 处理权限和端口占用的问题
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -89,6 +91,7 @@ function onError(error) {
  */
 
 function onListening() {
+  // 请求地址信息，包含端口号和family(ipv6还是ipv4)
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
