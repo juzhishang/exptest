@@ -8,10 +8,13 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+// 创建express应用
 var app = express();
 
 // view engine setup
+// 设置模板目录
 app.set('views', path.join(__dirname, 'views'));
+// 设置模板引擎
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
