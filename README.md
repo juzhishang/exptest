@@ -1,3 +1,3 @@
 # exptest
 
-read express-generator code
+read express
